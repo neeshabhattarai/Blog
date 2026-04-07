@@ -1,6 +1,8 @@
+using System.Text;
 using Blog.Application.Extensions;
 using Blog.Infastructure.Extensions;
 using Blog.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -13,24 +15,31 @@ builder.Services.AddApplicationService();
 builder.Services.AddControllers();
 builder.Services.AddInfastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAuthentication().AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
+        ValidateIssuerSigningKey = true,
     };
 });
+builder.Services.AddAuthorization();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.Configure<SMTPConfigure>(builder.Configuration.GetSection("SMTP"));
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("Bearer",new OpenApiSecurityScheme()
+    options.AddSecurityDefinition("BearerScheme",new OpenApiSecurityScheme()
     {
+        BearerFormat = JwtBearerDefaults.AuthenticationScheme,
         Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
+        Scheme = "bearer",
     });
     options.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
@@ -39,7 +48,7 @@ builder.Services.AddSwaggerGen(options =>
             Reference = new OpenApiReference
             {
                 Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
+                Id = "BearerScheme"
             }
         },
         new List<string>()}
@@ -56,6 +65,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
 

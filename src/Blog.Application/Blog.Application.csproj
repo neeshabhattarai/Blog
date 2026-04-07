@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Comments\Command\AddComment\" />
       <Folder Include="Comments\Command\DeleteComment\" />
       <Folder Include="Comments\Queries\GetAllComment\" />
       <Folder Include="Comments\Queries\GetById\" />

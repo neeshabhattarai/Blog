@@ -12,7 +12,7 @@ using QRCoder;
 namespace Blog.Controller;
 [ApiController]
 [Route("[action]")]
-public class UserController(UserManager<IdentityUser> userManager,IHttpContextAccessor contextAccessor,SignInManager<IdentityUser> signInManager,IEmailService emailService):ControllerBase
+public class UserController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> RegisterUser([FromBody] AddUser user)
@@ -65,7 +65,7 @@ public class UserController(UserManager<IdentityUser> userManager,IHttpContextAc
     [Authorize]
     public async Task<IActionResult> Configure2FA(string token)
     {
-        var user = contextAccessor.HttpContext.User;
+        var user = User;
         var identityUser =
             await userManager.FindByEmailAsync(user.Claims.FirstOrDefault(c => ClaimTypes.Email == c.Type)?.Value);
         if (identityUser == null)
@@ -85,17 +85,16 @@ public class UserController(UserManager<IdentityUser> userManager,IHttpContextAc
     [Authorize]
     public async Task<IActionResult> RemoveUser()
     {
-        var user= contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var user = User;
         if (user == null)
         {
             throw new Exception("User not found");
         }
 
-        var identityUser=await userManager.FindByEmailAsync(user);
+        var identityUser=await userManager.FindByEmailAsync(user.FindFirst(ClaimTypes.Email)?.Value);
             await userManager.DeleteAsync(identityUser);
             return Ok("User deleted successfully");
     }
-
     [HttpGet]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -103,8 +102,8 @@ public class UserController(UserManager<IdentityUser> userManager,IHttpContextAc
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> GenerateQrCode()
     {
-        var user=contextAccessor.HttpContext.User.Claims.FirstOrDefault(c=>c.Type==ClaimTypes.Email)?.Value;
-        var identityUser =await userManager.GetUserAsync(contextAccessor.HttpContext.User);
+        var user=User;
+        var identityUser =await userManager.GetUserAsync(user);
         if (identityUser == null)
         {
             return Unauthorized();
@@ -125,12 +124,31 @@ public class UserController(UserManager<IdentityUser> userManager,IHttpContextAc
         
        return File(pngFormat.GetGraphic(20),"image/png");
     }
+[HttpPost]
+[ProducesResponseType(StatusCodes.Status200OK) ]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> GenerateToken([FromBody] AddUser user)
+    {
+        var users=await userManager.FindByEmailAsync(user.Email);
+        if (users==null)
+            return BadRequest("User not found");
+        var check=await userManager.CheckPasswordAsync(users,user.Password);
+        if (!check)
+        {
+            return Unauthorized();
+        }
 
+        var token = tokenGenerator.CreateToken(users);
+        return Ok(token);
+    }
     [HttpGet]
     [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> AuthenticateWithQr(string code)
     {
-        var user=contextAccessor.HttpContext.User;
+        var user=User;
         var identityUser=await userManager.GetUserAsync(user);
         var result=await userManager.VerifyTwoFactorTokenAsync(identityUser, userManager.Options.Tokens.AuthenticatorTokenProvider,
             code);
