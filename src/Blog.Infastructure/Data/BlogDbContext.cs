@@ -1,3 +1,4 @@
+using Blog.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,4 +10,6 @@ public class BlogDbContext:IdentityDbContext
     public  BlogDbContext(DbContextOptions options):base(options)
     {
     }
+    public DbSet<CommentText> CommentTexts { get; set; }
+    public DbSet<UserPost> UserPosts { get; set; }
 }
