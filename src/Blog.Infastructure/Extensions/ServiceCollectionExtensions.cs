@@ -1,4 +1,7 @@
+using Blog.Domain.Entities;
+using Blog.Domain.Repository;
 using Blog.Infastructure.Data;
+using Blog.Infastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +18,8 @@ public static class ServiceCollectionExtensions
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
-        services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<BlogDbContext>().AddDefaultTokenProviders();
+        services.AddScoped<ICommentText, CommentRepository>();
+        services.AddScoped<IUserPost, UserPostRepository>();
+        services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<BlogDbContext>().AddDefaultTokenProviders();
     }
 }

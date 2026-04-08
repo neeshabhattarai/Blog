@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using Blog.Application.User.DTO;
+using Blog.Domain.Entities;
 using Blog.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -12,12 +13,12 @@ using QRCoder;
 namespace Blog.Controller;
 [ApiController]
 [Route("[action]")]
-public class UserController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
+public class UserController(UserManager<User> userManager,SignInManager<User> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> RegisterUser([FromBody] AddUser user)
     {
-        var identityUser = new IdentityUser
+        var identityUser = new User
         {
             UserName = user.Email,
             Email = user.Email

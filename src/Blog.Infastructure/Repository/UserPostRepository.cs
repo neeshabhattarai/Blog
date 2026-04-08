@@ -15,15 +15,15 @@ public class UserPostRepository(BlogDbContext context):IUserPost
 
     public List<UserPost> GetAllPost()
     {
-        var allPost=context.UserPosts.Include("Comments").ToList();
+        var allPost = context.UserPosts.Include("User").Include(u=>u.CommentTexts).ToList();
         return allPost;
     }
 
-    public async Task<int> AddPost(UserPost userPost)
+    public async Task<string> AddPost(UserPost userPost)
     {
         await context.UserPosts.AddAsync(userPost);
         await context.SaveChangesAsync();
-        return 1;
+        return userPost.UserId;
     }
 
     public async Task<UserPost> UpdatePost(UserPost userPost, string postId)

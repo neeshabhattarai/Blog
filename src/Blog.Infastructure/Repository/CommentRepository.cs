@@ -15,15 +15,15 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
 
     public  List<CommentText> GetAllComment()
     {
-        var queryable= dbContext.CommentTexts.ToList(); 
+        var queryable= dbContext.CommentTexts.Include("User").Include("Post").ToList(); 
         return queryable;
     }
 
-    public async Task<int> AddComment(CommentText comment)
+    public async Task<string> AddComment(CommentText comment)
     { 
         await dbContext.CommentTexts.AddAsync(comment);
       await dbContext.SaveChangesAsync();
-      return 1;
+      return comment.CommentId.ToString();
     }
     public async Task<CommentText> UpdateComment(CommentText comment,string commentId)
     {

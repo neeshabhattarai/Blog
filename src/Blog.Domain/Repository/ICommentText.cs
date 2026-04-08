@@ -6,6 +6,6 @@ public interface ICommentText
 {
     Task<CommentText> GetCommentById(string commentId);
     List<CommentText> GetAllComment();
-    Task<int> AddComment(CommentText comment);
+    Task<string> AddComment(CommentText comment);
     Task<CommentText> UpdateComment(CommentText commentText,string commentId);
 }
