@@ -21,5 +21,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICommentText, CommentRepository>();
         services.AddScoped<IUserPost, UserPostRepository>();
         services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<BlogDbContext>().AddDefaultTokenProviders();
+        services.AddAuthorizationBuilder().AddDefaultPolicy("IsAdmin", builder => builder.RequireClaim("IsAdmin"));
     }
 }

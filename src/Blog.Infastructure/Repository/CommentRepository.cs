@@ -10,6 +10,8 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
     public async Task<CommentText> GetCommentById(string commentId)
     {
         var comment=await dbContext.CommentTexts.FirstOrDefaultAsync(x=>x.CommentId==commentId);
+        if(comment==null)
+            return null;
         return comment;
     }
 
@@ -25,16 +27,26 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
       await dbContext.SaveChangesAsync();
       return comment.CommentId.ToString();
     }
-    public async Task<CommentText> UpdateComment(CommentText comment,string commentId)
+    public async Task<CommentText> UpdateComment(CommentText comment)
     {
-        var comments = await GetCommentById(commentId);
+        var comments = await GetCommentById(comment.CommentId);
         if (comments == null)
         {
             return null;
         }
 
-        comments.CommentId = comment.Comment;
+        comments.Comment = comment.Comment;
         await  dbContext.SaveChangesAsync();
         return comments;
+    }
+
+    public async Task<bool?> DeleteComment(string requestId)
+    {
+        var comments = await GetCommentById(requestId);
+        if (comments == null)
+            return null;
+        dbContext.CommentTexts.Remove(comments);
+        await dbContext.SaveChangesAsync();
+        return true;
     }
 }

@@ -7,9 +7,12 @@ namespace Blog.Infastructure.Repository;
 
 public class UserPostRepository(BlogDbContext context):IUserPost
 {
-    public async Task<UserPost> GetUserPostById(string userId)
+    public async Task<UserPost> GetUserPostById(string postId)
     {
-        var userPost=await context.UserPosts.Include("Comments").FirstOrDefaultAsync(u => u.UserId == userId);
+        var userPost=await context.UserPosts.Include(u=>u.CommentTexts).Include(u=>u.User)
+            .FirstOrDefaultAsync(u=>u.PostId == postId);
+        if (userPost == null)
+            return null;
         return userPost;
     }
 
@@ -26,17 +29,25 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         return userPost.UserId;
     }
 
-    public async Task<UserPost> UpdatePost(UserPost userPost, string postId)
+    public async Task<UserPost> UpdatePost(UserPost userPost)
     {
-        var userPosts = await GetUserPostById(postId);
+        var userPosts = await GetUserPostById(userPost.PostId);
         if (userPosts == null)
         {
             return null;
         }
 
-        userPosts.CommentTexts = userPost.CommentTexts;
+        userPosts.PostTitle = userPost.PostTitle;
         await  context.SaveChangesAsync();
-        return userPost;
-        
+        return userPosts;
+    }
+    public async Task<bool?> DeletePost(string postId)
+    {
+        var userPost = await GetUserPostById(postId);
+        if (userPost == null)
+            return null;
+         context.UserPosts.Remove(userPost);
+         await context.SaveChangesAsync();
+         return true;
     }
 }

@@ -21,6 +21,7 @@ public class TokenGenerator(IConfiguration configuration):ITokenGenerator
         listClaims.Add(new Claim(ClaimTypes.Email,user.Email));
         listClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
         listClaims.Add(new Claim(ClaimTypes.Name,user.UserName));
+        listClaims.Add(new Claim("IsAdmin",true.ToString()));
         var claimsDictionary=new Dictionary<string,object>();
         foreach (var claim in listClaims)
         {

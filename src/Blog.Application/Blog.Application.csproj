@@ -24,9 +24,4 @@
       <ProjectReference Include="..\Blog.Domain\Blog.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Comments\Command\DeleteComment\" />
-      <Folder Include="Comments\Queries\GetById\" />
-    </ItemGroup>
-
 </Project>
