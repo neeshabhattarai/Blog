@@ -8,13 +8,46 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QRCoder;
 
 namespace Blog.Controller;
 [ApiController]
 [Route("[action]")]
-public class UserController(UserManager<User> userManager,SignInManager<User> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
+public class UserController(UserManager<User> userManager,RoleManager<IdentityRole> roleManager,SignInManager<User> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
 {
+    [HttpPost]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> AddRole(string roleName)
+    {
+        var user = User;
+        var identityUser=await userManager.GetUserAsync(User);
+        var roles=new List<string>{"Admin".ToUpper(),"User".ToUpper(),"Manager".ToUpper()};
+        if (!roleManager.Roles.Any())
+        {
+            foreach (var role in roles)
+            {
+              await  roleManager.CreateAsync(new IdentityRole(role));
+
+            }
+        }
+
+        var result = roles.Contains(roleName);
+        if (result == false)
+        {
+            return BadRequest("Role not found");
+        }
+      var resultRole= await userManager.AddToRoleAsync(identityUser,roleName);
+      if (resultRole.Succeeded)
+      {
+          return Ok("User role assigned successfully");
+      }
+      return BadRequest(resultRole.Errors);
+    }
     [HttpPost]
     public async Task<IActionResult> RegisterUser([FromBody] AddUser user)
     {
@@ -140,7 +173,7 @@ public class UserController(UserManager<User> userManager,SignInManager<User> si
             return Unauthorized();
         }
 
-        var token = tokenGenerator.CreateToken(users);
+        var token =await tokenGenerator.CreateToken(users);
         return Ok(token);
     }
     [HttpGet]

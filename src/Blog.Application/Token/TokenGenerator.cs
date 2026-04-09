@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using Blog.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -7,21 +8,27 @@ using Microsoft.IdentityModel.Tokens;
 
 public interface ITokenGenerator
 {
-    object CreateToken(IdentityUser user);
+    Task<object> CreateToken(User user);
 }
-public class TokenGenerator(IConfiguration configuration):ITokenGenerator
+public class TokenGenerator(IConfiguration configuration,UserManager<User> roleManager):ITokenGenerator
 {
-    public object CreateToken(IdentityUser user)
+    public async Task<object> CreateToken(User user)
     {
         if (user == null)
         {
             throw new Exception("user not found");
         }
+
+        var role =await roleManager.GetRolesAsync(user);
         var listClaims = new List<Claim>(); 
         listClaims.Add(new Claim(ClaimTypes.Email,user.Email));
         listClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
         listClaims.Add(new Claim(ClaimTypes.Name,user.UserName));
-        listClaims.Add(new Claim("IsAdmin",true.ToString()));
+        foreach (var roleName in role)
+        {
+            listClaims.Add(new Claim(ClaimTypes.Role,roleName));   
+        }
+        // listClaims.Add(new Claim("IsAdmin",true.ToString()));
         var claimsDictionary=new Dictionary<string,object>();
         foreach (var claim in listClaims)
         {

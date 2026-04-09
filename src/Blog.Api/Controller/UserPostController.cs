@@ -4,6 +4,7 @@ using Blog.Application.UserPost.Command.DeleteUserPost;
 using Blog.Application.UserPost.Command.UpdateUserPost;
 using Blog.Application.UserPost.Queries.GetAllUserPost;
 using Blog.Application.UserPost.Queries.GetUserPostById;
+using Blog.Infastructure.Service;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Blog.Controller;
 
 [ApiController]
+[Authorize(Policy = Policy.IsAdminOrUser)]
+// [Authorize(Policy = Policy.IsUser)]
+[Authorize(Policy = Policy.IsAuthor)]
 [Route("[action]")]
 public class UserPostController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    [Authorize]
+    
     public async Task<IActionResult> AddUserPost([FromBody] AddUserPostCommand command)
     {
         var user = User;
@@ -24,7 +28,8 @@ public class UserPostController(IMediator mediator) : ControllerBase
         return CreatedAtAction(null, new { id = result }, command);
     }
 
-    [HttpGet] [Authorize] public async Task<IActionResult> GetAllUserPosts()
+    [HttpGet] 
+    public async Task<IActionResult> GetAllUserPosts()
     {
         var result = await mediator.Send(new GetAllUserPostCommand());
         return Ok(result);
@@ -32,20 +37,16 @@ public class UserPostController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
     [Route("{id}")]
     public async Task<IActionResult> GetUserPostById([FromRoute] string id)
 
 {
         var result=await mediator.Send(new GetUserPostByIdCommand(id));
-        if(result==null)
             return NotFound();
         return Ok(result);
         
     }
     [HttpPut("{postId}")]
-    [Authorize]
-    
     public async Task<IActionResult> UpdateUserPost([FromBody] UpdateUserPostCommand request,[FromRoute]string postId)
     {
         request.PostId = postId;
@@ -59,7 +60,6 @@ public class UserPostController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete]
-    [Authorize]
     [Route("{postId}")]
     public async Task<IActionResult> DeleteUserPostById([FromRoute] string postId)
     {

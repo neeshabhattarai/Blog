@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controller;
 [ApiController]
-[Authorize(Policy = Policy.IsAdmin)]
+[Authorize(Policy = Policy.IsAdminOrUser)]
+// [Authorize(Policy = Policy.IsUser)]
 [Route("api/[action]")]
 public class CommentsController(IMediator mediator):ControllerBase
 {
