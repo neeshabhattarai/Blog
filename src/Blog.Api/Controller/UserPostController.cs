@@ -14,7 +14,7 @@ namespace Blog.Controller;
 [ApiController]
 [Authorize(Policy = Policy.IsAdminOrUser)]
 // [Authorize(Policy = Policy.IsUser)]
-[Authorize(Policy = Policy.IsAuthor)]
+// [Authorize(Policy = Policy.IsAuthor)]
 [Route("[action]")]
 public class UserPostController(IMediator mediator) : ControllerBase
 {
@@ -27,11 +27,11 @@ public class UserPostController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(command);
         return CreatedAtAction(null, new { id = result }, command);
     }
-
-    [HttpGet] 
-    public async Task<IActionResult> GetAllUserPosts()
+    [HttpGet]
+    
+   public async Task<IActionResult> GetAllUserPosts([FromQuery] GetAllUserPostCommand request)
     {
-        var result = await mediator.Send(new GetAllUserPostCommand());
+        var result = await mediator.Send(request);
         return Ok(result);
 
     }

@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+using Blog.Domain.Constant;
 using Blog.Domain.Entities;
 using Blog.Domain.Repository;
 using Blog.Infastructure.Data;
@@ -16,10 +18,25 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         return userPost;
     }
 
-    public List<UserPost> GetAllPost()
+    public List<UserPost> GetAllPost(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
     {
-        var allPost = context.UserPosts.Include("User").Include(u=>u.CommentTexts).ToList();
-        return allPost;
+        var allPost = context.UserPosts.Include("User").Include(c=>c.CommentTexts)
+            .Where(u=>u.PostTitle.Contains(search) || search==null);
+
+        if (orderBy != null)
+        {
+            var OrderDictionary=new Dictionary<string,Expression<Func<UserPost, object>>>
+            {
+                {nameof(UserPost.PostId),u=>u.PostId},
+                {nameof(UserPost.PostTitle),u=>u.PostTitle}
+            };
+            allPost = sortDirection == SortingDirection.desc
+                ? allPost.OrderByDescending(OrderDictionary[orderBy])
+                : allPost.OrderBy(OrderDictionary[orderBy]);
+        }
+
+       allPost=allPost.Skip(pageIndex-1).Take(pageSize);
+        return allPost.ToList();
     }
 
     public async Task<string> AddPost(UserPost userPost)
