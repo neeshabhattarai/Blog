@@ -3,7 +3,7 @@ using Blog.Domain.Entities;
 
 namespace Blog.Application.UserPost.DTO;
 
-public class ReadUserPost
+public class ReadUserPostDTO
 {
     public string UserName { get; set; }
     public string PostId { get; set; }

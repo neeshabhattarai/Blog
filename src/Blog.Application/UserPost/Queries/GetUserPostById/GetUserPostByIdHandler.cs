@@ -5,12 +5,12 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Queries.GetUserPostById;
 
-public class GetUserPostByIdHandler(IUserPost userPost,IMapper mapper):IRequestHandler<GetUserPostByIdCommand,ReadUserPost>
+public class GetUserPostByIdHandler(IUserPost userPost,IMapper mapper):IRequestHandler<GetUserPostByIdCommand,ReadUserPostDTO>
 {
-    public async Task<ReadUserPost> Handle(GetUserPostByIdCommand request, CancellationToken cancellationToken)
+    public async Task<ReadUserPostDTO> Handle(GetUserPostByIdCommand request, CancellationToken cancellationToken)
     {
        var result=await userPost.GetUserPostById(request.Id);
-     var mappingResult=  mapper.Map<ReadUserPost>(result);
+     var mappingResult=  mapper.Map<ReadUserPostDTO>(result);
      return mappingResult;
        
     }

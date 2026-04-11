@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+using Blog.Domain.Constant;
 using Blog.Domain.Entities;
 using Blog.Domain.Repository;
 using Blog.Infastructure.Data;
@@ -15,10 +17,21 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
         return comment;
     }
 
-    public  List<CommentText> GetAllComment()
+    public  List<CommentText> GetAllComment(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
     {
-        var queryable= dbContext.CommentTexts.Include("User").Include("Post").ToList(); 
-        return queryable;
+        var queryable = dbContext.CommentTexts.Include("User").Include("Post").Where(x=>x.Comment==search || search==null);
+        if (!string.IsNullOrWhiteSpace(orderBy))
+        {
+            var OrderedDesc = new Dictionary<string, Expression<Func<CommentText, object>>>
+            {
+                { nameof(CommentText.CommentId), x => x.CommentId },
+                { nameof(CommentText.Comment), x => x.Comment }
+            };
+            queryable=SortingDirection.desc==sortDirection?queryable.OrderByDescending(OrderedDesc[orderBy]):queryable.OrderBy(OrderedDesc[orderBy]);
+        }
+        
+        queryable=queryable.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        return queryable.ToList();
     }
 
     public async Task<string> AddComment(CommentText comment)

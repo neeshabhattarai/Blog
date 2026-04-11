@@ -32,9 +32,9 @@ public class CommentsController(IMediator mediator):ControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> GetAllComment()
+    public async Task<IActionResult> GetAllComment([FromQuery] GetAllCommentCommand request)
     {
-        var result = await mediator.Send(new GetAllCommentCommand());
+        var result = await mediator.Send(request);
         return Ok(result);
     }
     

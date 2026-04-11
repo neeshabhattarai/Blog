@@ -10,6 +10,6 @@ public class UserPostProfile:Profile
     {
         CreateMap<UpdateUserPostCommand, Domain.Entities.UserPost>();
         CreateMap<AddUserPostCommand,Domain.Entities.UserPost>().ForMember(x=>x.PostId,opt=>opt.Ignore()).ReverseMap();
-        CreateMap<Domain.Entities.UserPost,ReadUserPost>().ForMember(x=>x.UserName,opt=>opt.MapFrom(o=>o.User.UserName)).ReverseMap();
+        CreateMap<Domain.Entities.UserPost,ReadUserPostDTO>().ForMember(x=>x.UserName,opt=>opt.MapFrom(o=>o.User.UserName)).ReverseMap();
     }
 }

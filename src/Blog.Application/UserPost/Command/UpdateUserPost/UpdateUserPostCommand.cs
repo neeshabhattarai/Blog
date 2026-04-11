@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Command.UpdateUserPost;
 
-public class UpdateUserPostCommand:IRequest<ReadUserPost?>
+public class UpdateUserPostCommand:IRequest<ReadUserPostDTO?>
 {
     [JsonIgnore]
     public string? PostId {get;set;}

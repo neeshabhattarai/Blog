@@ -5,13 +5,13 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Command.UpdateUserPost;
 
-public class UpdateUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHandler<UpdateUserPostCommand,ReadUserPost?>
+public class UpdateUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHandler<UpdateUserPostCommand,ReadUserPostDTO?>
 {
-    public async Task<ReadUserPost?> Handle(UpdateUserPostCommand request, CancellationToken cancellationToken)
+    public async Task<ReadUserPostDTO?> Handle(UpdateUserPostCommand request, CancellationToken cancellationToken)
     {
         var mapperPost = mapper.Map<Domain.Entities.UserPost>(request);
         var post =await userPost.UpdatePost(mapperPost);
-        var resultPost=mapper.Map<ReadUserPost>(post);
+        var resultPost=mapper.Map<ReadUserPostDTO>(post);
         return resultPost;
     }
 }

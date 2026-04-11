@@ -35,7 +35,7 @@ public class UserPostRepository(BlogDbContext context):IUserPost
                 : allPost.OrderBy(OrderDictionary[orderBy]);
         }
 
-       allPost=allPost.Skip(pageIndex-1).Take(pageSize);
+       allPost=allPost.Skip((pageIndex-1)*pageSize).Take(pageSize);
         return allPost.ToList();
     }
 

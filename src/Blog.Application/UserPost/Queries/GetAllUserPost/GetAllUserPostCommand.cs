@@ -1,9 +1,10 @@
+using Blog.Application.Comments.DTO;
 using Blog.Application.UserPost.DTO;
 using MediatR;
 
 namespace Blog.Application.UserPost.Queries.GetAllUserPost;
 
-public class GetAllUserPostCommand:IRequest<PageResult>
+public class GetAllUserPostCommand:IRequest<PageResult<ReadUserPostDTO>>
 { 
     public string? searchText{get;set;}
 public int pageIndex{get;set;}
