@@ -40,7 +40,7 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         return allPost.ToList();
     }
 
-    public async Task<string> AddPost(AddUserPostCommand userPost)
+    public async Task<string> AddPost(UserPost userPost)
     {
         await context.UserPosts.AddAsync(userPost);
         await context.SaveChangesAsync();
