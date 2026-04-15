@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using Blog.Application.UserPost.Command.AddUserPost;
 using Blog.Domain.Constant;
 using Blog.Domain.Entities;
 using Blog.Domain.Repository;
@@ -39,7 +40,7 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         return allPost.ToList();
     }
 
-    public async Task<string> AddPost(UserPost userPost)
+    public async Task<string> AddPost(AddUserPostCommand userPost)
     {
         await context.UserPosts.AddAsync(userPost);
         await context.SaveChangesAsync();
