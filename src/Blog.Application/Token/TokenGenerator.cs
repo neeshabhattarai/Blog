@@ -20,10 +20,11 @@ public class TokenGenerator(IConfiguration configuration,UserManager<User> roleM
         }
 
         var role =await roleManager.GetRolesAsync(user);
-        var listClaims = new List<Claim>(); 
-        listClaims.Add(new Claim(ClaimTypes.Email,user.Email));
-        listClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
-        listClaims.Add(new Claim(ClaimTypes.Name,user.UserName));
+        var listClaims=await roleManager.GetClaimsAsync(user);
+        // var listClaims = new List<Claim>(); 
+        // listClaims.Add(new Claim(ClaimTypes.Email,user.Email));
+        // listClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+        // listClaims.Add(new Claim(ClaimTypes.Name,user.UserName));
         foreach (var roleName in role)
         {
             listClaims.Add(new Claim(ClaimTypes.Role,roleName));   
