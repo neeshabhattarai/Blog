@@ -11,5 +11,5 @@ public class GetAllCommentCommand:IRequest<PageResult<ReadCommentDTO>>
 
     public int pageSize{get;set;}
     public string? orderBy {get;set;}
-    public string sortDirection {get;set;}
+    public string? sortDirection {get;set;}
 }

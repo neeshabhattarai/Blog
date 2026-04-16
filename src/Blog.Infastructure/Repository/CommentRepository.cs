@@ -29,8 +29,11 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
             };
             queryable=SortingDirection.desc==sortDirection?queryable.OrderByDescending(OrderedDesc[orderBy]):queryable.OrderBy(OrderedDesc[orderBy]);
         }
+
+        var pageLength = pageIndex<=0 ? 0 : pageIndex;
+        var pageTaker = pageSize <= 0 ? queryable.Count() : pageSize;
         
-        queryable=queryable.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        queryable=queryable.Skip((pageLength - 1) * pageSize).Take(pageTaker);
         return queryable.ToList();
     }
 

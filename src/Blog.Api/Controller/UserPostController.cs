@@ -15,7 +15,7 @@ namespace Blog.Controller;
 [Authorize(Policy = Policy.IsAdminOrUser)]
 // [Authorize(Policy = Policy.IsUser)]
 // [Authorize(Policy = Policy.IsAuthor)]
-[Route("[action]")]
+[Route("api/Post/[action]")]
 public class UserPostController(IMediator mediator) : ControllerBase
 {
     [HttpPost]

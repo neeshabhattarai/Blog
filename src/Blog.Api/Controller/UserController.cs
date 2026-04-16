@@ -13,7 +13,7 @@ using QRCoder;
 
 namespace Blog.Controller;
 [ApiController]
-[Route("[action]")]
+[Route("/api/User/[action]")]
 public class UserController(UserManager<User> userManager,RoleManager<IdentityRole> roleManager,SignInManager<User> signInManager,ITokenGenerator tokenGenerator,IEmailService emailService,IConfiguration configuration):ControllerBase
 {
     [HttpPost]

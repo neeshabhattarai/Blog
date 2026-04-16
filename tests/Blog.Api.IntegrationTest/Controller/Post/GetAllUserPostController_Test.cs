@@ -1,0 +1,40 @@
+using System.Net;
+using System.Net.Http.Headers;
+using Blog.Api.IntegrationTest.Controller.User;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
+namespace Blog.Api.IntegrationTest.Controller;
+
+public class GetAllUserPostController_Test:IClassFixture<WebApplicationFactory<Program>>
+{
+    public WebApplicationFactory<Program> client { get; set; }
+    public GetAllUserPostController_Test(WebApplicationFactory<Program> factory)
+    {
+        client = factory;
+    }
+
+    [Fact]
+    public async Task GetAllUserPost_ShouldReturnOk()
+    {
+        var getClient = client.CreateClient();
+        var token = new GetUserController_Test(client);
+        var tokens=await token.GenerateToken();
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
+       var response=await getClient.GetAsync($"/api/Post/GetUserPostById/76316a1f-b911-4ce0-928d-8593461187a8");
+       response.EnsureSuccessStatusCode();
+       Assert.Equal(response.IsSuccessStatusCode,true);
+    }
+    
+    [Fact]
+    public async Task GetAllUserPost_ShouldReturnNotFound()
+    {
+        var getClient = client.CreateClient();
+        var token = new GetUserController_Test(client);
+        var tokens=await token.GenerateToken();
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
+        var response=await getClient.GetAsync($"/api/Post/GetUserPostById/33");
+        Assert.Equal(response.StatusCode,HttpStatusCode.NotFound);
+    }
+    
+}
