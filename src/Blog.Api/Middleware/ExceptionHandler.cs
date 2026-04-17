@@ -4,18 +4,16 @@ namespace Blog.Middleware;
 
 public class ExceptionHandler:IMiddleware
 {
-    public Task InvokeAsync(HttpContext context, RequestDelegate next)
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try
-        { 
-             next(context);
-             return Task.CompletedTask;
+        {
+            await next(context);
         }
         catch (Exception e)
         {
             context.Response.StatusCode = 500;
-            context.Response.WriteAsync(e.Message);
-            return Task.CompletedTask;
+            await context.Response.WriteAsync(e.Message);
         }
     }
     

@@ -6,7 +6,7 @@ public interface IUserPost
 {
     
     Task<UserPost> GetUserPostById(string userId);
-    List<UserPost> GetAllPost(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection);
+    Task<List<UserPost>> GetAllPost(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection);
     Task<string> AddPost(UserPost userPost);
     Task<UserPost> UpdatePost(UserPost userPost);
     Task<bool?> DeletePost(string postId);

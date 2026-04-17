@@ -17,7 +17,7 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
         return comment;
     }
 
-    public  List<CommentText> GetAllComment(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
+    public  Task<List<CommentText>> GetAllComment(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
     {
         var queryable = dbContext.CommentTexts.Include("User").Include("Post").Where(x=>x.Comment==search || search==null);
         if (!string.IsNullOrWhiteSpace(orderBy))
@@ -34,7 +34,7 @@ public class CommentRepository(BlogDbContext dbContext):ICommentText
         var pageTaker = pageSize <= 0 ? queryable.Count() : pageSize;
         
         queryable=queryable.Skip((pageLength - 1) * pageSize).Take(pageTaker);
-        return queryable.ToList();
+        return queryable.ToListAsync();
     }
 
     public async Task<string> AddComment(CommentText comment)

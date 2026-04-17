@@ -9,7 +9,7 @@ public class GetAllUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHa
 {
     public async Task<PageResult<ReadUserPostDTO>> Handle(GetAllUserPostCommand request, CancellationToken cancellationToken)
     {
-       var UserPostList= userPost.GetAllPost(request.searchText, request.pageIndex, request.pageSize,request.orderBy,request.sortDirection);
+       var UserPostList=await userPost.GetAllPost(request.searchText, request.pageIndex, request.pageSize,request.orderBy,request.sortDirection);
        var list=mapper.Map<List<ReadUserPostDTO>>(UserPostList);
        return new PageResult<ReadUserPostDTO>(list,request.pageSize,request.pageIndex,request.orderBy,request.sortDirection);
     }

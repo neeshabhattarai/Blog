@@ -10,7 +10,7 @@ public class GetAllCommentHandler(ICommentText commentText,IMapper mapper):IRequ
 {
     public async Task<PageResult<ReadCommentDTO>> Handle(GetAllCommentCommand request, CancellationToken cancellationToken)
     {
-        var commentList = commentText.GetAllComment(request.searchText, request.pageIndex, request.pageSize,request.orderBy,request.sortDirection);
+        var commentList =await commentText.GetAllComment(request.searchText, request.pageIndex, request.pageSize,request.orderBy,request.sortDirection);
         var listComment = mapper.Map<List<ReadCommentDTO>>(commentList);
         return new PageResult<ReadCommentDTO>(listComment,request.pageSize,request.pageIndex,request.orderBy,request.sortDirection);
     }

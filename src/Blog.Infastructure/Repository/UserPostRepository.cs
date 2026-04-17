@@ -19,7 +19,7 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         return userPost;
     }
 
-    public List<UserPost> GetAllPost(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
+    public Task<List<UserPost>> GetAllPost(string? search,int pageIndex, int pageSize,string? orderBy,string sortDirection)
     {
         var allPost = context.UserPosts.Include("User").Include(c=>c.CommentTexts)
             .Where(u=>u.PostTitle.Contains(search) || search==null);
@@ -35,9 +35,10 @@ public class UserPostRepository(BlogDbContext context):IUserPost
                 ? allPost.OrderByDescending(OrderDictionary[orderBy])
                 : allPost.OrderBy(OrderDictionary[orderBy]);
         }
-
-       allPost=allPost.Skip((pageIndex-1)*pageSize).Take(pageSize);
-        return allPost.ToList();
+        var pageLength = pageIndex<=0 ? 0 : pageIndex;
+        var pageTaker = pageSize <= 0 ? allPost.Count() : pageSize;
+       allPost=allPost.Skip((pageLength-0)*pageTaker).Take(pageTaker);
+        return allPost.ToListAsync();
     }
 
     public async Task<string> AddPost(UserPost userPost)
