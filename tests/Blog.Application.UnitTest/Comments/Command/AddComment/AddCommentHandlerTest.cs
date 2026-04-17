@@ -24,16 +24,20 @@ public class AddCommentHandlerTest
     {
         var newCommentText = new CommentText
         {
-            Comment = "Test",
-            PostId = "33",
-            UserId = "22",
             CommentId = "2232"
         };
-       ;
-        mapper.Setup(x => x.Map<CommentText>(It.IsAny<AddCommentCommand>())).Returns(newCommentText);
+        var addCommand = new AddCommentCommand
+        {Comment = "Test",
+            PostId = "33",
+            UserId = "22",
+            
+        };
+       
+        mapper.Setup(x => x.Map<CommentText>(addCommand)).Returns(newCommentText);
         commentText.Setup(s => s.AddComment(newCommentText)).ReturnsAsync(newCommentText.CommentId);
         var handler = new AddCommentHanlder(commentText.Object, mapper.Object);
-        Assert.AreEqual(await handler.Handle(It.IsAny<AddCommentCommand>(),CancellationToken.None),"2232");
+        Assert.AreEqual(await handler.Handle(addCommand,CancellationToken.None),"2232");
+        commentText.Verify(x=>x.AddComment(newCommentText),Times.Once);
     }
 
     [Test]

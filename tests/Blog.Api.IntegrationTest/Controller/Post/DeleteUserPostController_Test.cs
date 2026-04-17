@@ -13,7 +13,7 @@ public class DeleteUserPostController_Test:IClassFixture<WebApplicationFactory<P
         client = factory;
     }
     [Fact]
-    public async Task GetAllUserPost_ShouldReturnNotFound()
+    public async Task DeleteUserPost_ShouldReturnNotFound()
     {
         var getClient = client.CreateClient();
         var token = new GetUserController_Test(client);
@@ -24,13 +24,13 @@ public class DeleteUserPostController_Test:IClassFixture<WebApplicationFactory<P
     }
     
     [Fact]
-    public async Task GetAllUserPost_ShouldReturnSuccess()
+    public async Task DeleteUserPost_ShouldReturnSuccess()
     {
         var getClient = client.CreateClient();
         var token = new GetUserController_Test(client);
         var tokens=await token.GenerateToken();
         getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
-        var response=await getClient.DeleteAsync($"/api/Post/DeleteUserPostById/1a7ff143-fd56-46ac-80d8-d28aedb227b0");
+        var response=await getClient.DeleteAsync($"/api/Post/DeleteUserPostById/065ae4ca-70c8-4a05-80ee-184d7beb4fee");
         Assert.Equal(response.StatusCode,HttpStatusCode.NoContent);
     }
 }

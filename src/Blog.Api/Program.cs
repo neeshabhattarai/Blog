@@ -17,6 +17,7 @@ builder.Services.AddApplicationService();
 builder.Services.AddControllers();
 builder.Services.AddInfastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ExceptionHandler>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

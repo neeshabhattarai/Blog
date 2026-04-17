@@ -35,7 +35,7 @@
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8d6db51e_002D9cfa_002D46d0_002Dbfc0_002Db5f138b30f56/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAllUserPost_ShouldReturnNotFound" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8d6db51e_002D9cfa_002D46d0_002Dbfc0_002Db5f138b30f56/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnNotFound" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentValidatorTest&lt;/TestId&gt;
@@ -43,6 +43,11 @@
     &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Token.TokenGeneratorTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.AddUserPostHandlerTest&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.AddUserPostValidationTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.DeleteUserPost.DeleteUserValidationTest.DeleteUserPost_InputStringId_ReturnOk&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.DeleteUserPost.DeleteUserValidationTest.DeleteUserPost_InputStringId_ReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.DeleteUserPost.DeleteUserValidationTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.UpdateUserPost.UpdateUserPostTest.UpdateUserPost_ShouldUpdateUserPost_WhenPostExists&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.UpdateUserPost.UpdateUserPostTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9825f0e0_002D58d6_002D4189_002Db408_002D01318dddb641/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -64,7 +69,7 @@
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d329f369_002D5c76_002D49b4_002Db990_002D91e12a8bb63e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d329f369_002D5c76_002D49b4_002Db990_002D91e12a8bb63e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PostComment_ShouldReturnCreatedAction #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
@@ -72,6 +77,15 @@
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnOk&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnNotFound&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.GetAllUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentHandlerTest.AddCommentHandler_ShouldReturnSuccess&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.DeleteUserPost_ShouldReturnSuccess&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=def5453f_002D2fda_002D4514_002Db79d_002Dca4e659493db/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DeleteUserPost_ShouldReturnSuccess" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.DeleteUserPost_ShouldReturnSuccess&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.AddUserPostHandlerTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f2ea23df_002D2089_002D42eb_002Da2eb_002D82537ca8776d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

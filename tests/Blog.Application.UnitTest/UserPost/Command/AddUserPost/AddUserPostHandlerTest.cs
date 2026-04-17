@@ -13,27 +13,34 @@ public class AddUserPostHandlerTest
     public Mock<IMapper> MapperMock;
     public Mock<IConfiguration> ConfigurationMock;
     public Mock<IUserPost> UserPostMock;
+    public Blog.Domain.Entities.UserPost userPost;
+    public AddUserPostCommand Command;
     [SetUp]
     public void AddUserPostHandlerTes()
     {
         MapperMock = new Mock<IMapper>();
         ConfigurationMock = new Mock<IConfiguration>();
         UserPostMock = new Mock<IUserPost>();
+         userPost = new Blog.Domain.Entities.UserPost
+        {
+
+            PostId= "12334"
+        };
+             Command= new AddUserPostCommand
+        {
+            PostTitle = "Test",
+            UserId = "1334",
+        };
     }
 
     [Test]
     public async Task AddUserPostHandler_ShouldReturnSuccess()
     {
-        var userPost = new Blog.Domain.Entities.UserPost
-        {
-            PostTitle = "Test",
-            UserId = "1334",
-            PostId= "12334"
-        };
+        
         UserPostMock.Setup(u => u.AddPost(userPost)).ReturnsAsync(userPost.PostId);
-        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(It.IsAny<AddUserPostCommand>())).Returns(userPost);
+        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(Command)).Returns(userPost);
         var handler=new AddUserPostHandler(UserPostMock.Object,MapperMock.Object);
-        var result = await handler.Handle(It.IsAny<AddUserPostCommand>(), CancellationToken.None);
+        var result = await handler.Handle(Command, CancellationToken.None);
         Assert.AreEqual(result,userPost.PostId);
     }
     [Test]
@@ -41,7 +48,7 @@ public class AddUserPostHandlerTest
     {
         var userPost = It.IsAny<Blog.Domain.Entities.UserPost>();
         UserPostMock.Setup(u => u.AddPost(userPost)).ReturnsAsync((string?)null);
-        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(It.IsAny<AddUserPostCommand>())).Returns(userPost);
+        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(Command)).Returns(userPost);
         var handler=new AddUserPostHandler(UserPostMock.Object,MapperMock.Object);
         var result = await handler.Handle(It.IsAny<AddUserPostCommand>(), CancellationToken.None);
         Assert.That(result,Is.Null);
@@ -51,7 +58,7 @@ public class AddUserPostHandlerTest
     {
         var userPost = It.IsAny<Blog.Domain.Entities.UserPost>();
         UserPostMock.Setup(u => u.AddPost(userPost)).ThrowsAsync(new Exception("Db connection failure"));
-        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(It.IsAny<AddUserPostCommand>())).Returns(userPost);
+        MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(Command)).Returns(userPost);
         var handler=new AddUserPostHandler(UserPostMock.Object,MapperMock.Object);
         var result =Assert.ThrowsAsync<Exception>(async () => await handler.Handle(It.IsAny<AddUserPostCommand>(), CancellationToken.None));
         Assert.AreEqual(result.Message,"Db connection failure");

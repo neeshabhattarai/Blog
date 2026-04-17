@@ -21,11 +21,11 @@ public class UpdateUserPostController_Test:IClassFixture<WebApplicationFactory<P
         var client = Factory.CreateClient();
         var tokens =await new GetUserController_Test(Factory).GenerateToken();
         client.DefaultRequestHeaders.Authorization =new AuthenticationHeaderValue("Bearer", tokens);
-        var response = await client.PutAsJsonAsync("/api/Post/UpdateUserPost/1a7ff143-fd56-46ac-80d8-d28aedb227b0", new
+        var response = await client.PutAsJsonAsync("/api/Post/UpdateUserPost/065ae4ca-70c8-4a05-80ee-184d7beb4fee", new
         {
             PostTitle = "Test Title"
         },JsonSerializerOptions.Default);
-        response.EnsureSuccessStatusCode();
+        // response.EnsureSuccessStatusCode();
         Assert.Equal(response.StatusCode,HttpStatusCode.OK);
     }
     [Fact]
@@ -34,8 +34,7 @@ public class UpdateUserPostController_Test:IClassFixture<WebApplicationFactory<P
         var client = Factory.CreateClient();
         var tokens =await new GetUserController_Test(Factory).GenerateToken();
         client.DefaultRequestHeaders.Authorization =new AuthenticationHeaderValue("Bearer", tokens);
-        var response = await client.DeleteAsync("/api/Post/DeleteUserPostById/76316a1f-b911-4ce0-928d-8593461187a8");
-        // response.EnsureSuccessStatusCode();
+        var response = await client.DeleteAsync("/api/Post/DeleteUserPostById/ed741b32-77d4-4a80-9367-74e441c1e6c6");
         Assert.Equal(response.StatusCode,HttpStatusCode.NotFound);
     }
 
