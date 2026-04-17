@@ -1,12 +1,18 @@
 using Blog.Application.UserPost.Command.AddUserPost;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
 namespace Test.UserPost.Command;
-
+[TestFixture]
 public class AddUserPostValidationTest
 {
-    [Fact]
+    private AddUserPostValidation validation;
+    [SetUp]
+    public void AddUserValidation()
+    {
+         validation = new ();
+    }
+    [Test]
     public async Task AddUserPost_ReturnSuccess()
     {
         var addUser = new AddUserPostCommand
@@ -14,18 +20,17 @@ public class AddUserPostValidationTest
             PostTitle = "First Post",
             UserId = "12"
         };
-        var validation = new AddUserPostValidation();
+       
        var result= validation.Validate(addUser);
-       Assert.True(result.IsValid);
+       Assert.That(result.IsValid);
 
     }
-    [Fact]
+    [Test]
     public async Task AddUserPost_ReturnFailure()
     {
-        var validation = new AddUserPostValidation();
         var newAddPost = new AddUserPostCommand();
         var result= validation.Validate(newAddPost);
         Assert.False(result.IsValid);
-        Assert.Equal("PostTitle", result.Errors[0].PropertyName);
+        Assert.AreEqual("PostTitle", result.Errors[0].PropertyName);
     }
 }

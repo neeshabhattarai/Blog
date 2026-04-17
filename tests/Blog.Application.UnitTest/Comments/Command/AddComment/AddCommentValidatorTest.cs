@@ -1,11 +1,11 @@
 using Blog.Application.Comments.Command.AddComment;
-using Xunit;
+using NUnit.Framework;
 
 namespace Test.Comments.Command.AddComment;
-
+[TestFixture]
 public class AddCommentValidatorTest
 {
-    [Fact]
+    [Test]
     public async Task AddComment_ShouldReturnSuccess()
     {
         var commentValidator = new AddCommentValidation();
@@ -16,15 +16,15 @@ public class AddCommentValidatorTest
             UserId = "33"
         };
         var testResult=commentValidator.Validate(commentInstance);
-        Assert.True(testResult.IsValid);
+        Assert.That(testResult.IsValid);
     }
 
-    [Fact]
+    [Test]
     public async Task AddComment_ShouldReturnFailure()
     {
         var commentValidator = new AddCommentValidation();
         var commentInstance = new AddCommentCommand();
         var testResult=commentValidator.Validate(commentInstance);
-        Assert.False(testResult.IsValid);
+        Assert.That(testResult.IsValid,Is.False);
     }
 }

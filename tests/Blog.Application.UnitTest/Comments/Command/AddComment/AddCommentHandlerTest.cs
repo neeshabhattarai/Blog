@@ -3,20 +3,23 @@ using Blog.Application.Comments.Command.AddComment;
 using Blog.Domain.Entities;
 using Blog.Domain.Repository;
 using Moq;
-using Xunit;
+using NUnit.Asserts;
+using NUnit.Framework;
+
 
 namespace Test.Comments.Command.AddComment;
-
+[TestFixture]
 public class AddCommentHandlerTest
 {
     public Mock<IMapper> mapper { get; set; }
     public Mock<ICommentText> commentText { get; set; }
-    public AddCommentHandlerTest()
+    [SetUp]
+    public void AddCommentHandlerTes()
     {
         mapper=new Mock<IMapper>();
         commentText=new Mock<ICommentText>();
     }
-    [Fact]
+    [Test]
     public async Task AddCommentHandler_ShouldReturnSuccess()
     {
         var newCommentText = new CommentText
@@ -30,25 +33,25 @@ public class AddCommentHandlerTest
         mapper.Setup(x => x.Map<CommentText>(It.IsAny<AddCommentCommand>())).Returns(newCommentText);
         commentText.Setup(s => s.AddComment(newCommentText)).ReturnsAsync(newCommentText.CommentId);
         var handler = new AddCommentHanlder(commentText.Object, mapper.Object);
-        Assert.Equal(await handler.Handle(It.IsAny<AddCommentCommand>(),CancellationToken.None),"2232");
+        Assert.AreEqual(await handler.Handle(It.IsAny<AddCommentCommand>(),CancellationToken.None),"2232");
     }
 
-    [Fact]
+    [Test]
     public async Task AddCommentHandler_ShouldReturnNull()
     {
        mapper.Setup(x => x.Map<CommentText>(It.IsAny<AddCommentCommand>())).Returns(new CommentText());
        var handler = new AddCommentHanlder(commentText.Object, mapper.Object);
        var result = await handler.Handle(It.IsAny<AddCommentCommand>(), CancellationToken.None);
-       Assert.Null(result);
+       Assert.That(result,Is.Null);
     }
-    [Fact]
+    [Test]
     public async Task AddCommentHandler_ShouldReturnFailure()
     {
         var addCommentCommand = new AddCommentCommand();
         mapper.Setup(x => x.Map<CommentText>(addCommentCommand)).Returns(new CommentText());
         var handler = new AddCommentHanlder(commentText.Object, mapper.Object);
         commentText.Setup(x=>x.AddComment(It.IsAny<CommentText>())).ThrowsAsync(new Exception("User cannot be null"));
-       var rs=await Assert.ThrowsAsync<Exception>(()=>handler.Handle(It.IsAny<AddCommentCommand>(), CancellationToken.None));
-       Assert.Equal(rs.Message,"User cannot be null");
+       var rs= Assert.ThrowsAsync<Exception>(()=>handler.Handle(It.IsAny<AddCommentCommand>(), CancellationToken.None));
+       Assert.AreEqual(rs.Message,"User cannot be null");
     }
 }

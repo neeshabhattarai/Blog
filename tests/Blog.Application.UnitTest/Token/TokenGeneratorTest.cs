@@ -3,13 +3,14 @@ using Blog.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace Test.Token;
-
+[TestFixture]
 public class TokenGeneratorTest
 {
-    [Fact]
+    [Test]
     public async Task GenerateToken_ShouldReturnSuccess()
     {
         var configuration=new Mock<IConfiguration>();
@@ -30,7 +31,7 @@ public class TokenGeneratorTest
             .ReturnsAsync(new List<string>());
 
       var token= await tokenGenerator.CreateToken(user);
-        Assert.NotNull(token);
+        Assert.That(token,Is.Not.Null);
         
     }
     

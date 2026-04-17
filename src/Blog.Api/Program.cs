@@ -1,6 +1,7 @@
 using System.Text;
 using Blog.Application.Extensions;
 using Blog.Infastructure.Extensions;
+using Blog.Middleware;
 using Blog.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApplicationService();
+
 builder.Services.AddControllers();
 builder.Services.AddInfastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
@@ -64,6 +66,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandler>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
