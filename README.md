@@ -1,75 +1,77 @@
-# Project Overview
-This Blog project is designed to provide a platform for users to create, read, update, and delete blog posts. It aims to facilitate easy content management and enhance user engagement through various features.
+# ASP.NET Core Blog API Documentation
 
-# Features
-- User authentication
+## Features
+- User registration and authentication
 - CRUD operations for blog posts
+- Tag management
 - Commenting system
-- Tagging and categorization of posts
-- Responsive design
+- Search functionality
 
-# Technology Stack
-- Frontend: React.js
-- Backend: Node.js with Express
-- Database: MongoDB
-- Authentication: JWT (JSON Web Token)
+## Technology Stack
+- ASP.NET Core
+- Entity Framework Core
+- SQL Server
+- Swagger for API documentation
 
-# Architecture
-The architecture follows a client-server model with a clear separation between the frontend and backend. The frontend communicates with the backend API to retrieve and manipulate data.
+## Architecture
+The Blog API follows a microservices architecture, where each service is responsible for a specific part of the functionality.
 
-# Prerequisites
-Before running the project, ensure you have the following installed:
-- Node.js (v12 or higher)
-- MongoDB
-- Git
-
-# Setup Instructions
+## Setup Instructions
 1. Clone the repository:
    ```bash
    git clone https://github.com/neeshabhattarai/Blog.git
+   ```
+2. Navigate to the project directory:
+   ```bash
    cd Blog
    ```
-2. Install dependencies:
+3. Install the dependencies:
    ```bash
-   npm install
+   dotnet restore
    ```
-3. Create a `.env` file with the required environment variables.
-4. Start the MongoDB service.
+4. Set up the SQL Server database and update the connection string in `appsettings.json`.
 5. Run the application:
    ```bash
-   npm start
+   dotnet run
    ```
 
-# Database Configuration
-Configure your database connection in the `.env` file:
-```plaintext
-db_uri=<your_mongodb_connection_string>
-```
+## API Endpoints
+| Method | Endpoint                    | Description                  |
+|--------|-----------------------------|------------------------------|
+| GET    | /api/posts                  | Retrieve all posts           |
+| POST   | /api/posts                  | Create a new post            |
+| GET    | /api/posts/{id}             | Retrieve a specific post     |
+| PUT    | /api/posts/{id}             | Update a specific post       |
+| DELETE | /api/posts/{id}             | Delete a specific post       |
 
-# API Endpoints
-- **POST /api/posts** - Create a new blog post
-- **GET /api/posts** - Retrieve all blog posts
-- **GET /api/posts/:id** - Retrieve a single blog post
-- **PUT /api/posts/:id** - Update a blog post
-- **DELETE /api/posts/:id** - Delete a blog post
+## Authentication
+The API uses JWT tokens for user authentication. Users must register and log in to obtain a token, which should be included in the `Authorization` header of requests.
 
-# Authentication Flow
-1. User registers and a JWT token is issued.
-2. User logs in, receives another JWT for session management.
-3. JWT is sent with each request to protected API endpoints.
+## Database Schema
+The database consists of the following tables:
+- Users
+- Posts
+- Comments
+- Tags
 
-# Testing
-Run the following command to execute tests:
-```bash
-npm test
-```
+## Known Issues
+- Performance degradation with large datasets
+- Occasional token expiration issues on user sessions.
 
-# Contribution Guidelines
-Contributions are welcome! Please follow these steps:
+## Contribution Guidelines
 1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with clear messages.
-4. Push your branch to your fork.
-5. Submit a pull request.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/MyNewFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/MyNewFeature
+   ```
+5. Open a pull request.
 
-Thank you for considering contributing to this project!
+Happy coding!
