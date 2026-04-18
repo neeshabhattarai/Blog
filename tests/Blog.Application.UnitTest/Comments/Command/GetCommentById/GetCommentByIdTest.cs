@@ -57,6 +57,7 @@ public class GetCommentByIdTest
         var result=await GetCommentByIdHandler.Handle(new (commentId), CancellationToken.None);
         Assert.IsNull(result);
         commentTextMock.Verify(x => x.GetCommentById(commentId), Times.Once);
+        mapperMock.Verify(x => x.Map<CommentText>(It.IsAny<CommentText>()), Times.Never);
     }
     [Test]
     public async Task GetCommentById_ShouldReturnException_WhenCommentDoesNotExists()
