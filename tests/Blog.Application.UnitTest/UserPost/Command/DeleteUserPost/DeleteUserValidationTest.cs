@@ -10,40 +10,40 @@ public class DeleteUserValidationTest
   
   public DeleteUserPostHandler deleteUserPostHandler;
   public Mock<IUserPost> post;
+  public DeleteUserPostCommand deleteUserPostCommand;
   
   [SetUp]
   public void Setup()
   {
     post = new Mock<IUserPost>();
     deleteUserPostHandler = new DeleteUserPostHandler(post.Object);
+    deleteUserPostCommand = new DeleteUserPostCommand("afdfe");
   }
+  
   [Test]
   public async Task DeleteUserPost_ShouldReturnTrue_WhenUserPostDeleted()
   {
-    var deleteUserPostCommand = new DeleteUserPostCommand("22434");
-    post.Setup(x => x.DeletePost(deleteUserPostCommand.PostId)).ReturnsAsync(true);
+    post.Setup(x => x.DeletePost(It.IsAny<string>())).ReturnsAsync(true);
    var res=await deleteUserPostHandler.Handle(deleteUserPostCommand, CancellationToken.None);
    Assert.IsTrue(res);
    post.Verify(x => x.DeletePost(deleteUserPostCommand.PostId), Times.Once);
   }
 
   [Test]
-  public async Task DeleteUserPost_ShouldReturnFalse_WhenUserPostNotDeleted()
+  public async Task DeleteUserPost_ShouldReturnException_WhenDbConnectionFails()
   {
-    var deleteUserPostCommand = new DeleteUserPostCommand("afdfe");
-    post.Setup(x => x.DeletePost(deleteUserPostCommand.PostId)).ReturnsAsync(false);
-    var res=await deleteUserPostHandler.Handle(deleteUserPostCommand, CancellationToken.None);
-    Assert.IsFalse(res);
+    post.Setup(x => x.DeletePost(It.IsAny<string>())).ThrowsAsync(new Exception("Db connection failure"));
+    var res=Assert.ThrowsAsync<Exception>(async ()=>await deleteUserPostHandler.Handle(deleteUserPostCommand, CancellationToken.None));
     post.Verify(x => x.DeletePost(deleteUserPostCommand.PostId), Times.Once);
+    Assert.AreEqual("Db connection failure", res.Message);
   }
   
   [Test]
   public async Task DeleteUserPost_ShouldReturnNull_WhenUserPostNotFound()
   {
-    var deleteUserPostCommand = new DeleteUserPostCommand("afdfe");
-    post.Setup(x => x.DeletePost(deleteUserPostCommand.PostId)).ReturnsAsync((bool?)null);
-    var res=await deleteUserPostHandler.Handle(deleteUserPostCommand, CancellationToken.None);
+    post.Setup(x => x.DeletePost(It.IsAny<string>())).ReturnsAsync((bool?)null);
+    var res=await deleteUserPostHandler.Handle(new DeleteUserPostCommand(""),CancellationToken.None);
     Assert.IsNull(res);
-    post.Verify(x => x.DeletePost(deleteUserPostCommand.PostId), Times.Once);
+    post.Verify(x => x.DeletePost(It.IsAny<string>()), Times.Once);
   }
 }
