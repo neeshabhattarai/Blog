@@ -64,7 +64,7 @@
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d329f369_002D5c76_002D49b4_002Db990_002D91e12a8bb63e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PostComment_ShouldReturnCreatedAction #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d329f369_002D5c76_002D49b4_002Db990_002D91e12a8bb63e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
@@ -84,25 +84,23 @@
     &lt;TestId&gt;NUnit3x::0BB6863F-194A-4A0D-837B-5F539F8D5BC8::net8.0::Blog.Api.UnitTest.Tests.UserPostController_UpdateUserPost_ShouldReturnOnceCalled&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d74c65de_002D7d48_002D42dd_002D93fd_002D62c193ad3df0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CommentController_AddComment_ShouldReturnUnAuthorized" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_AddComment_ShouldReturnUnAuthorized&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_GetCommentById_ShouldReturnComment&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_GetCommentById_ShouldNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_GetAllComment_ShouldReturnComment&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_DeleteCommentById_ReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_DeleteCommentById_ReturnNoContent&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_UpdateComment_ReturnUpdatedComment&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_UpdateCommentById_ReturnNotFound&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=def5453f_002D2fda_002D4514_002Db79d_002Dca4e659493db/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DeleteUserPost_ShouldReturnSuccess" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.DeleteUserPost_ShouldReturnSuccess&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.AddUserPostHandlerTest&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.DeleteComment.DeleteCommentTest.DeleteComment_ShouldReturnNoContent_WhenUserDeleteCommentIsSuccessful&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.DeleteComment.DeleteCommentTest.DeleteComment_ShouldReturnNotFound_WhenUserDoesnotExists&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.DeleteComment.DeleteCommentTest.DeleteComment_ShouldReturnBadRequest_WhenUserDoesnotExists&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.GetCommentById.GetCommentByIdTest.GetCommentById_ShouldReturnComment_WhenCommentExists&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.GetCommentById.GetCommentByIdTest.GetCommentById_ShouldReturnNull_WhenCommentDoesNotExists&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.GetCommentById.GetCommentByIdTest.GetCommentById_ShouldReturnException_WhenCommentDoesNotExists&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.Tests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_AddComment_ShouldReturnUnAuthorized&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fac11cd3_002Dc8d1_002D4a48_002Da598_002D9acc3583436f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddCommentHandler_ShouldReturnFailure" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentHandlerTest.AddCommentHandler_ShouldReturnFailure&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Token.TokenGeneratorTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.UserPost.Command.AddUserPostValidationTest.AddUserPost_ReturnSuccess&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.GetCommentController.GetComment_ShouldReturnOk&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fac11cd3_002Dc8d1_002D4a48_002Da598_002D9acc3583436f/@EntryIndexedValue">JetBrains.ReSharper.UnitTestFramework.Session.Serialization.SessionState</s:String></wpf:ResourceDictionary>

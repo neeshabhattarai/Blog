@@ -5,6 +5,16 @@ namespace Blog.Application.UserPost.DTO;
 
 public class ReadUserPostDTO
 {
+    public ReadUserPostDTO()
+    {
+    }
+
+    public ReadUserPostDTO(string postId, string postTitle)
+    {
+        PostId = postId;
+        PostTitle = postTitle;
+    }
+
     public string UserName { get; set; }
     public string PostId { get; set; }
     public string PostTitle { get; set; }

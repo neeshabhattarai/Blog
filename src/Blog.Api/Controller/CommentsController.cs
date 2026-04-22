@@ -23,7 +23,13 @@ public class CommentsController(IMediator mediator):ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> AddComment([FromBody] AddCommentCommand request)
     {
-        var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var user = User;
+        if (user==null)
+        {
+            return Unauthorized();
+        }
+        
+        var userID = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         request.UserId = userID;
        var result=await mediator.Send(request);
        return CreatedAtAction(null,new {id=result},request);
@@ -58,6 +64,8 @@ public class CommentsController(IMediator mediator):ControllerBase
     {
         request.CommentId = id;
         var result = await mediator.Send(request);
+        if(result==null)
+            return NotFound();
         return Ok(result);
     }
 
