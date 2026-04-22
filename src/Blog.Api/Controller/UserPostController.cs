@@ -23,7 +23,12 @@ public class UserPostController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> AddUserPost([FromBody] AddUserPostCommand command)
     {
         var user = User;
-        command.UserId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+        var userId=user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+        command.UserId = userId;
         var result = await mediator.Send(command);
         return CreatedAtAction(null, new { id = result }, command);
     }
@@ -42,7 +47,10 @@ public class UserPostController(IMediator mediator) : ControllerBase
 
 {
         var result=await mediator.Send(new GetUserPostByIdCommand(id));
+        if (result == null)
+        {
             return NotFound();
+        }
         return Ok(result);
         
     }

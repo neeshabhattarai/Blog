@@ -68,7 +68,7 @@ public class AddUserPostHandlerTest
     {
         var handler = new AddUserPostHandler(UserPostMock.Object,MapperMock.Object);
         MapperMock.Setup(x=>x.Map<Blog.Domain.Entities.UserPost>(It.IsAny<AddUserPostCommand>())).Throws(new Exception("Mapper not assigned"));
-        var result = Assert.ThrowsAsync<Exception>(async ()=>await handler.Handle(null, CancellationToken.None));
+        var result = Assert.ThrowsAsync<Exception>(async ()=>await handler.Handle(Command, CancellationToken.None));
         MapperMock.Verify(x=>x.Map<Blog.Domain.Entities.UserPost>(It.IsAny<AddUserPostCommand>()), Times.Once);
         UserPostMock.Verify(x=>x.AddPost(It.IsAny<Blog.Domain.Entities.UserPost>()), Times.Never);
     }
