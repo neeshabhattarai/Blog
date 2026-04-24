@@ -37,7 +37,8 @@ public class UserPostRepository(BlogDbContext context):IUserPost
         }
         var pageLength = pageIndex<=0 ? 0 : pageIndex;
         var pageTaker = pageSize <= 0 ? allPost.Count() : pageSize;
-       allPost=allPost.Skip((pageLength-0)*pageTaker).Take(pageTaker);
+       allPost=allPost.Skip((pageLength-1)*pageTaker).Take(pageTaker);
+       var result = allPost.ToList();
         return allPost.ToListAsync();
     }
 
@@ -45,7 +46,7 @@ public class UserPostRepository(BlogDbContext context):IUserPost
     {
         await context.UserPosts.AddAsync(userPost);
         await context.SaveChangesAsync();
-        return userPost.UserId;
+        return userPost.PostId;
     }
 
     public async Task<UserPost> UpdatePost(UserPost userPost)

@@ -8,6 +8,40 @@
     &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentHandlerTest.AddCommentHandle&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=02899e20_002D90c4_002D4676_002Da933_002D71b3230dcddc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1d843dd5_002D5ef3_002D44a6_002Db46b_002D2fcbe980186b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAllUserPost_ShouldReturnAllUserPost #8" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostByUserId_ShouldReturnNull&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNoContent&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnPost&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostByUserId_ShouldReturnPost&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.AddUserPost_ShouldThrowException&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.AddUserPost_ShouldSuccess&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.UpdateUserPost_ShouldSuccess&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.UpdateUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.UpdateUserPost_ShouldThrowException&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.UpdateUserPost_WithInvalidInput_ShouldThrowException&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnNull_WhenInvalidData&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnNull_WhenDataNotPresent&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.AddUserPost_ShouldThrowException_WhenInvalidInput&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3c807643_002D00cc_002D4ccd_002D9a3f_002D83ad3ae6978b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4943a361_002D21a7_002D4a60_002Da67d_002D0981c50d85ca/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=49493033_002D2540_002D434a_002Dae6e_002D37e2531ceeeb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddCommentHandle #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentHandlerTest.AddCommentHandler_ShouldReturnFailure&lt;/TestId&gt;
@@ -24,6 +58,11 @@
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.GetCommentController&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5e42e71d_002Dc1c2_002D48cd_002D9209_002Da815a27da294/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #6" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6d889be6_002Dcb86_002D4e42_002Db196_002D9f66f228da97/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CommentRepository_GetCommentById_ShouldReturnNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.Tests&lt;/TestId&gt;
@@ -34,6 +73,12 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=84c4909b_002D5514_002D49ef_002Db9b8_002D29649d056dc3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c34ef6b_002Dbcde_002D4d08_002D9a93_002De8b13da8554a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DeleteUserPost_ShouldReturnNoContent #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNoContent&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnAllUserPost&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8d6db51e_002D9cfa_002D46d0_002Dbfc0_002Db5f138b30f56/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnNotFound" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -55,6 +100,16 @@
     &lt;TestId&gt;NUnit3x::0BB6863F-194A-4A0D-837B-5F539F8D5BC8::net8.0::Blog.Api.UnitTest.Tests.UserPostController_GetAllUserPosts_ShouldReturnAllUserPosts&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=945aa2d3_002Dce09_002D4e19_002D94d5_002D95f5333f0331/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9e25355d_002Dc5a1_002D4840_002D84e8_002D14808919e956/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a695c75b_002D01bf_002D43a3_002D843d_002D5f1a76e677cb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TokenGeneratorTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
@@ -65,9 +120,24 @@
     &lt;TestId&gt;xUnit::4A73CCBC-0EE5-478E-9FBA-3C3F2318D7B3::net8.0::Test.Comments.Command.AddComment.AddCommentHandlerTest.AddCommentHandle&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a7b431fb_002D618c_002D460d_002Db04a_002D9c0579160c59/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=acc9c3b1_002Df95f_002D4b13_002Da383_002D74f36aa78138/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ba104a9f_002D3611_002D4289_002Db3ce_002D86f36116910f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetComment_ShouldReturnOk #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::23A0AB10-F51B-4A3E-9E58-EF03C9741B8D::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostComment_ShouldReturnCreatedAction&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c55bcff1_002D4c40_002D4256_002D82ba_002Df0a504e3d79a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #7" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d329f369_002D5c76_002D49b4_002Db990_002D91e12a8bb63e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostComment_ShouldReturnCreatedAction #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -110,16 +180,36 @@
     &lt;TestId&gt;NUnit3x::73BF8917-FD04-464A-BCA6-9745A43786EE::net8.0::Blog.Api.UnitTest.CommentControllerTest.CommentController_AddComment_ShouldReturnUnAuthorized&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e3f9cbbd_002Dcae4_002D49c6_002D8c5a_002D77145e0ec419/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAllComments_ShouldReturnAllComments #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e3f9cbbd_002Dcae4_002D49c6_002D8c5a_002D77145e0ec419/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllComments_ShouldReturnAllComments #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostByUserId_ShouldReturnNull&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNoContent&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNotFound&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e92572f9_002Dedb8_002D4643_002D847c_002D1f87fa94e6fc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DeleteUserPost_ShouldReturnNoContent" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNoContent&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ecf98fae_002Da0c3_002D4e70_002Db518_002D8b924a64c964/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f3930ab4_002Db73a_002D4e9c_002Dbdd8_002D9161b665344c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllComments_ShouldReturnAllComments" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllComments_ShouldReturnAllComments&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.DeleteUserPost_ShouldReturnNoContent&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd815e77_002D7ff0_002D4ea7_002Db6ca_002D25d061a64212/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetUserPostById_ShouldReturnAllUserPost&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fdc3c277_002Db04f_002D4cdf_002Dbff4_002Da675b3247fba/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnAllUserPost #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::732846D2-1592-4762-889A-012382DC9244::net8.0::Blog.Infastructure.UnitTest.UserPostRepositoryTest.GetAllUserPost_ShouldReturnAllUserPost&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
