@@ -13,7 +13,7 @@ public class AddUserPostHandlerTest
 {
     public Mock<IMapper> MapperMock;
     public Mock<IConfiguration> ConfigurationMock;
-    public Mock<IUserPost> UserPostMock;
+    public Mock<IUserPostCommand> UserPostMock;
     public Blog.Domain.Entities.UserPost userPost;
     public AddUserPostCommand Command;
     [SetUp]
@@ -21,7 +21,7 @@ public class AddUserPostHandlerTest
     {
         MapperMock = new Mock<IMapper>();
         ConfigurationMock = new Mock<IConfiguration>();
-        UserPostMock = new Mock<IUserPost>();
+        UserPostMock = new Mock<IUserPostCommand>();
          userPost = new Blog.Domain.Entities.UserPost
         {
 

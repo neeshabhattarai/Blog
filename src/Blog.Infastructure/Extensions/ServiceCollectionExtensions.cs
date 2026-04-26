@@ -22,8 +22,11 @@ public static class ServiceCollectionExtensions
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
-        services.AddScoped<ICommentText, CommentRepository>();
-        services.AddScoped<IUserPost, UserPostRepository>();
+        services.AddScoped<ICommentCommand,CommentRepository>();
+        services.AddScoped<ICommentQuery,CommentRepository>();
+
+        services.AddScoped<IUserPostCommand, UserPostRepository>();
+        services.AddScoped<IUserPostQuery, UserPostRepository>();
         services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<BlogDbContext>().AddDefaultTokenProviders();
         services.AddAuthorizationBuilder().AddPolicy("IsAdmin",
                 builder => builder.RequireClaim(ClaimTypes.Role, Role.Admin))

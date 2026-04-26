@@ -12,12 +12,12 @@ namespace Test.Comments.Command.AddComment;
 public class AddCommentHandlerTest
 {
     public Mock<IMapper> mapper { get; set; }
-    public Mock<ICommentText> commentText { get; set; }
+    public Mock<ICommentCommand> commentText { get; set; }
     [SetUp]
     public void AddCommentHandlerTes()
     {
         mapper=new Mock<IMapper>();
-        commentText=new Mock<ICommentText>();
+        commentText=new Mock<ICommentCommand>();
     }
     [Test]
     public async Task AddCommentHandler_ShouldReturnSuccess()

@@ -10,7 +10,7 @@ namespace Test.UserPost.Command.UpdateUserPost;
 [TestFixture]
 public class UpdateUserPostHandlerTest
 {
-    public Mock<IUserPost> userPost;
+    public Mock<IUserPostCommand> userPost;
     public UpdateUserPostHandler Handler;
     public Mock<IMapper> Mapper;
     public UpdateUserPostCommand updateRequest;
@@ -19,7 +19,7 @@ public class UpdateUserPostHandlerTest
     [SetUp]
     public void Setup()
     {
-        userPost=new Mock<IUserPost>();
+        userPost=new Mock<IUserPostCommand>();
         Mapper = new Mock<IMapper>();
         Handler = new UpdateUserPostHandler(userPost.Object,Mapper.Object);
          updateRequest = new UpdateUserPostCommand

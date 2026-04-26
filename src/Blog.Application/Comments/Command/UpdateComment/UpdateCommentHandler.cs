@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Blog.Application.Comments.Command.UpdateComment;
 
-public class UpdateCommentHandler(ICommentText commentText,IMapper mapper):IRequestHandler<UpdateCommentCommand,ReadCommentDTO?>
+public class UpdateCommentHandler(ICommentCommand commentText,IMapper mapper):IRequestHandler<UpdateCommentCommand,ReadCommentDTO?>
 {
     public async Task<ReadCommentDTO?> Handle(UpdateCommentCommand request, CancellationToken cancellationToken)
     {

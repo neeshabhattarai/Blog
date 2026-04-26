@@ -7,12 +7,12 @@ namespace Test.Comments.Command.DeleteComment;
 [TestFixture]
 public class DeleteCommentTest
 {
-    public Mock<ICommentText> commentTextMock;
+    public Mock<ICommentCommand> commentTextMock;
     public DeleteCommentHandler deleteCommentHandler;
     [SetUp]
     public void Setup()
     {
-        commentTextMock = new Mock<ICommentText>();
+        commentTextMock = new Mock<ICommentCommand>();
         deleteCommentHandler = new DeleteCommentHandler(commentTextMock.Object);
         
     }

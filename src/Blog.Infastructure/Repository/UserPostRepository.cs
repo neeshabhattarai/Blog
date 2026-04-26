@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Infastructure.Repository;
 
-public class UserPostRepository(BlogDbContext context):IUserPost
+public class UserPostRepository(BlogDbContext context):IUserPostCommand,IUserPostQuery
 {
     public async Task<UserPost> GetUserPostById(string postId)
     {

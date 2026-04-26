@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Blog.Application.Comments.Command.DeleteComment;
 
-public class DeleteCommentHandler(ICommentText commentText):IRequestHandler<DeleteCommentCommand,bool?>
+public class DeleteCommentHandler(ICommentCommand commentText):IRequestHandler<DeleteCommentCommand,bool?>
 {
     public async Task<bool?> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
     {

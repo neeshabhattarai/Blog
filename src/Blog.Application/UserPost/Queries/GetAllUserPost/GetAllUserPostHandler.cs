@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Queries.GetAllUserPost;
 
-public class GetAllUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHandler<GetAllUserPostCommand,PageResult<ReadUserPostDTO>>
+public class GetAllUserPostHandler(IUserPostQuery userPost,IMapper mapper):IRequestHandler<GetAllUserPostCommand,PageResult<ReadUserPostDTO>>
 {
     public async Task<PageResult<ReadUserPostDTO>> Handle(GetAllUserPostCommand request, CancellationToken cancellationToken)
     {

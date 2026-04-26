@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Blog.Application.Comments.Queries.GetAllComment;
 
-public class GetAllCommentHandler(ICommentText commentText,IMapper mapper):IRequestHandler<GetAllCommentCommand,PageResult<ReadCommentDTO>>
+public class GetAllCommentHandler(ICommentQuery commentText,IMapper mapper):IRequestHandler<GetAllCommentCommand,PageResult<ReadCommentDTO>>
 {
     public async Task<PageResult<ReadCommentDTO>> Handle(GetAllCommentCommand request, CancellationToken cancellationToken)
     {

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Command.AddUserPost;
 
-public class AddUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHandler<AddUserPostCommand,string>
+public class AddUserPostHandler(IUserPostCommand userPost,IMapper mapper):IRequestHandler<AddUserPostCommand,string>
 {
     public async Task<string> Handle(AddUserPostCommand request, CancellationToken cancellationToken)
     {

@@ -9,13 +9,13 @@ public class DeleteUserValidationTest
 {
   
   public DeleteUserPostHandler deleteUserPostHandler;
-  public Mock<IUserPost> post;
+  public Mock<IUserPostCommand> post;
   public DeleteUserPostCommand deleteUserPostCommand;
   
   [SetUp]
   public void Setup()
   {
-    post = new Mock<IUserPost>();
+    post = new Mock<IUserPostCommand>();
     deleteUserPostHandler = new DeleteUserPostHandler(post.Object);
     deleteUserPostCommand = new DeleteUserPostCommand("afdfe");
   }

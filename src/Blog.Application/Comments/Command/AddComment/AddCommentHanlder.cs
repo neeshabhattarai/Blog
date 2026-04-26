@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Blog.Application.Comments.Command.AddComment;
 
-public class AddCommentHanlder(ICommentText commentText,IMapper mapper):IRequestHandler<AddCommentCommand,string>
+public class AddCommentHanlder(ICommentCommand commentText,IMapper mapper):IRequestHandler<AddCommentCommand,string>
 {
     public async Task<string> Handle(AddCommentCommand request, CancellationToken cancellationToken)
     {

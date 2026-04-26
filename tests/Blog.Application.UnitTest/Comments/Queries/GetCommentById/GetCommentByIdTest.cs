@@ -11,13 +11,13 @@ namespace Test.Comments.Command.GetCommentById;
 
 public class GetCommentByIdTest
 {
-    public Mock<ICommentText> commentTextMock { get; set; }
+    public Mock<ICommentQuery> commentTextMock { get; set; }
     public GetCommentByIdHandler GetCommentByIdHandler { get; set; }
     public Mock<IMapper> mapperMock { get; set; }
     [SetUp]
     public void Setup()
     {
-        commentTextMock = new Mock<ICommentText>();
+        commentTextMock = new Mock<ICommentQuery>();
         mapperMock = new Mock<IMapper>();
         GetCommentByIdHandler=new(commentTextMock.Object,mapperMock.Object);
     }

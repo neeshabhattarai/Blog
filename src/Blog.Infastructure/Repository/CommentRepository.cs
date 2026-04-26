@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Infastructure.Repository;
 
-public class CommentRepository(BlogDbContext dbContext):ICommentText
+public class CommentRepository(BlogDbContext dbContext):ICommentCommand,ICommentQuery
 {
     public async Task<CommentText> GetCommentById(string commentId)
     {

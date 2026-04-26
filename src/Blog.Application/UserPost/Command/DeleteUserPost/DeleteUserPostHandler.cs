@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Command.DeleteUserPost;
 
-public class DeleteUserPostHandler(IUserPost post):IRequestHandler<DeleteUserPostCommand,bool?>
+public class DeleteUserPostHandler(IUserPostCommand post):IRequestHandler<DeleteUserPostCommand,bool?>
 {
     public async Task<bool?> Handle(DeleteUserPostCommand request, CancellationToken cancellationToken)
     {

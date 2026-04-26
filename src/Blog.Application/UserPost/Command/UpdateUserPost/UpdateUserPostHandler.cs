@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Blog.Application.UserPost.Command.UpdateUserPost;
 
-public class UpdateUserPostHandler(IUserPost userPost,IMapper mapper):IRequestHandler<UpdateUserPostCommand,ReadUserPostDTO?>
+public class UpdateUserPostHandler(IUserPostCommand userPost,IMapper mapper):IRequestHandler<UpdateUserPostCommand,ReadUserPostDTO?>
 {
     public async Task<ReadUserPostDTO?> Handle(UpdateUserPostCommand request, CancellationToken cancellationToken)
     {
