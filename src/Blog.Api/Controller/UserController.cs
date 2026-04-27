@@ -36,7 +36,7 @@ public class UserController(UserManager<User> userManager,RoleManager<IdentityRo
             }
         }
 
-        var result = roles.Contains(roleName);
+        var result = roles.Contains(roleName.ToUpper());
         if (result == false)
         {
             return BadRequest("Role not found");
