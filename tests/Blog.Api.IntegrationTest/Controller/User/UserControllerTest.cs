@@ -33,10 +33,18 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
         return response;
     }
 
-    public async Task<HttpResponseMessage> GenerateToken()
+    public async Task<HttpResponseMessage> AddRole(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
+        var response = await _client.PostAsJsonAsync<object>("/api/User/AddRole?roleName=User",null);
+        return response;
+    }
+
+    public async Task<string> GenerateToken()
     {
         var response = await _client.PostAsJsonAsync("/api/User/GenerateToken", _addUser);
-        return response;
+        var tokenRead=await response.Content.ReadFromJsonAsync<GetToken>();
+        return tokenRead.Token;
     }
 
     [Fact]
@@ -71,9 +79,8 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     public async Task AddRole_WithInvalidToken_ShouldReturnUnauthorized()
     {
         await RegisterUser();
-        var response = await GenerateToken();
-        var message = await response.Content.ReadFromJsonAsync<GetToken>();
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message.Token+"a");
+        var message = await GenerateToken();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message+"a");
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Admin",null);
         Assert.NotNull(message);
         Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.Unauthorized);
@@ -85,9 +92,8 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     {
         await RegisterUser();
         var response = await GenerateToken();
-        var message = await response.Content.ReadFromJsonAsync<GetToken>();
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Admin",null);
-        Assert.NotNull(message);
+        Assert.NotNull(response);
         Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.Unauthorized);
         ;
     }
@@ -96,9 +102,7 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     {
         await RegisterUser();
         var response = await GenerateToken();
-        response.EnsureSuccessStatusCode();
-        Assert.Equal(response.StatusCode,HttpStatusCode.OK);
-        Assert.NotNull(response.Content);
+        Assert.NotNull(response);
     }
 
     
@@ -107,10 +111,9 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     {
         await RegisterUser();
         var response = await GenerateToken();
-        var message = await response.Content.ReadFromJsonAsync<GetToken>();
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message.Token);
-        var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Admin",null);
-       Assert.NotNull(message);
+        
+        var roleAssigned = await AddRole(response);
+       Assert.NotNull(response);
         Assert.NotNull(roleAssigned);
         Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.OK);
     }
@@ -119,9 +122,9 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     {
         await RegisterUser();
         var response = await GenerateToken();
-        var message = await response.Content.ReadFromJsonAsync<GetToken>();
-        Assert.NotNull(message);
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message.Token);
+        
+        Assert.NotNull(response);
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",response);
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Employee",null);
         Assert.NotNull(roleAssigned);
         Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.BadRequest);
@@ -139,9 +142,8 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
                 }));
         await RegisterUser();
         var responseMessage = await GenerateToken();
-        var message = await responseMessage.Content.ReadFromJsonAsync<GetToken>();
-        Assert.NotNull(message);
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message.Token);
+        Assert.NotNull(responseMessage);
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",responseMessage);
         
         var response = await _client.PostAsJsonAsync("/api/User/LoginWith2FA", _addUser);
         response.EnsureSuccessStatusCode();

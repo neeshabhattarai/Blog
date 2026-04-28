@@ -25,22 +25,27 @@ public class GetAllUserPostController_Test:IClassFixture<CustomWebApplicationFac
         var getClient = client.CreateClient();
         var token =await userControllerTest.RegisterUser();
         var message = await userControllerTest.GenerateToken();
-       var tokens=await message.Content.ReadFromJsonAsync<GetToken>();
-        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens.Token);
-       var response=await getClient.GetAsync($"/api/Post/GetAllUserPost");
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", message);
+        await userControllerTest.AddRole(message);
+        var newToken = await userControllerTest.GenerateToken();
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",newToken);
+       var response=await getClient.GetAsync("/api/Post/GetAllUserPosts?searchText=hello&pageIndex=1&pageSize=5&orderBy=PostTitle&sortDirection=desc");
        response.EnsureSuccessStatusCode();
        Assert.Equal(response.IsSuccessStatusCode,true);
     }
     
-    // [Fact]
-    // public async Task GetAllUserPost_ShouldReturnNotFound()
-    // {
-    //     var getClient = client.CreateClient();
-    //     var token = new GetUserController_Test(client);
-    //     var tokens=await token.GenerateToken();
-    //     getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
-    //     var response=await getClient.GetAsync($"/api/Post/GetUserPostById/33");
-    //     Assert.Equal(response.StatusCode,HttpStatusCode.NotFound);
-    // }
+    [Fact]
+    public async Task GetAllUserPost_ShouldReturnNotFound()
+    {
+        var getClient = client.CreateClient();
+        var token =await userControllerTest.RegisterUser();
+        var tokens = await userControllerTest.GenerateToken();
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
+        
+        getClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens);
+        var response=await getClient.GetAsync("/api/Post/GetAllUserPosts?searchText=hello&pageIndex=1&pageSize=5&orderBy=PostTitle&sortDirection=desc");
+        
+        Assert.Equal(response.StatusCode,HttpStatusCode.Forbidden);
+    }
     
 }
