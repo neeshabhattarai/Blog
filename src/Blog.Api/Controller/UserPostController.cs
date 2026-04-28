@@ -30,7 +30,13 @@ public class UserPostController(IMediator mediator) : ControllerBase
         }
         command.UserId = userId;
         var result = await mediator.Send(command);
-        return CreatedAtAction(null, new { id = result }, command);
+        var response = new
+        {
+            PostTitle = command.PostTitle,
+            userId = command.UserId,
+            PostId = result
+        };
+        return CreatedAtAction(null, new { id = result },response);
     }
     [HttpGet]
     

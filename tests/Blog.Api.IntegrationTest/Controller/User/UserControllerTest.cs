@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Runtime.InteropServices.JavaScript;
 using AutoMapper.Configuration.Annotations;
 using Blog.Api.IntegrationTest.Services;
+using Blog.Api.IntegrationTest.TestHelpers;
 using Blog.Api.IntegrationTest.Token;
 using Blog.Application.User.DTO;
 using Microsoft.AspNetCore.Authentication;
@@ -15,37 +16,32 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
 {
     private readonly HttpClient _client;
     private readonly CustomWebApplicationFactory<Program> _factory;
-    private readonly AddUser _addUser;
+    private readonly UserService _userService;
+    private AuthHelpers _authHelpers;
     public UserControllerTest(CustomWebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _client=factory.CreateClient();
-        _addUser = new AddUser
-        {
-            Email = "test@gmail.com",
-            Password = "Test@123"
-        };
+        _userService=new UserService(_factory);
+        _authHelpers=new AuthHelpers(_factory);
+        
+        
     }
 
     public async Task<HttpResponseMessage> RegisterUser()
     {
-        var response = await _client.PostAsJsonAsync("/api/User/RegisterUser",_addUser);
+        var response = await _userService.AddUser();
         return response;
     }
 
-    public async Task<HttpResponseMessage> AddRole(string token)
+    public async Task<HttpResponseMessage> AddRole()
     {
+        var token=await _authHelpers.GenerateToken();
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
-        var response = await _client.PostAsJsonAsync<object>("/api/User/AddRole?roleName=User",null);
+        var response = await _client.PostAsJsonAsync<object>("/api/User/AddRole?roleName=User",_userService.GetUser());
         return response;
     }
 
-    public async Task<string> GenerateToken()
-    {
-        var response = await _client.PostAsJsonAsync("/api/User/GenerateToken", _addUser);
-        var tokenRead=await response.Content.ReadFromJsonAsync<GetToken>();
-        return tokenRead.Token;
-    }
 
     [Fact]
     public async Task RegisterUser_WithValidValues_ShouldReturnOk()
@@ -59,8 +55,8 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     [Fact]
     public async Task RegisterUser_WithInvalidValues_ShouldReturnOk()
     {
-        _addUser.Password = "123456";
-        var response=await _client.PostAsJsonAsync("/api/User/RegisterUser",_addUser);
+         _userService._addUser.Password = "123456";
+        var response=await _client.PostAsJsonAsync("/api/User/RegisterUser",_userService.GetUser());
         Assert.Equal(response.StatusCode,HttpStatusCode.BadRequest);
         Assert.NotNull(response.Content);
     }
@@ -68,8 +64,10 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     [Fact]
     public async Task LoginWith2Fa_ShouldSendMessage()
     {
-        await RegisterUser();
-        var response = await _client.PostAsJsonAsync("/api/User/LoginWith2FA", _addUser);
+        
+        var token=await _authHelpers.GenerateToken();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
+        var response = await _client.PostAsJsonAsync("/api/User/LoginWith2FA",await _userService.GetUser());
         _factory.EmailService.Verify(x=>x.SendEmailAsync("test@gmail.com",It.IsAny<string>(),It.IsAny<string>()),Times.Once);
         response.EnsureSuccessStatusCode();
         Assert.Equal(response.StatusCode,HttpStatusCode.OK);
@@ -78,8 +76,7 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     [Fact]
     public async Task AddRole_WithInvalidToken_ShouldReturnUnauthorized()
     {
-        await RegisterUser();
-        var message = await GenerateToken();
+        var message=await _authHelpers.GenerateToken();
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",message+"a");
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Admin",null);
         Assert.NotNull(message);
@@ -90,18 +87,15 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     [Fact]
     public async Task AddRole_WithOutToken_ShouldReturnUnauthorized()
     {
-        await RegisterUser();
-        var response = await GenerateToken();
+        
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Admin",null);
-        Assert.NotNull(response);
         Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.Unauthorized);
         ;
     }
     [Fact]
     public async Task GenerateToken_ShouldReturnOk()
     {
-        await RegisterUser();
-        var response = await GenerateToken();
+        var response=await _authHelpers.GenerateToken();
         Assert.NotNull(response);
     }
 
@@ -109,20 +103,15 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
     [Fact]
     public async Task AddRole_ShouldReturnOk()
     {
-        await RegisterUser();
-        var response = await GenerateToken();
-        
-        var roleAssigned = await AddRole(response);
+        var response = await AddRole();
        Assert.NotNull(response);
-        Assert.NotNull(roleAssigned);
-        Assert.Equal(roleAssigned.StatusCode,HttpStatusCode.OK);
+        
+        Assert.Equal(HttpStatusCode.OK,response.StatusCode);
     }
     [Fact]
     public async Task AddRole_ShouldReturnBadRequest()
     {
-        await RegisterUser();
-        var response = await GenerateToken();
-        
+        var response=await _authHelpers.GenerateToken();
         Assert.NotNull(response);
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",response);
         var roleAssigned=await _client.PostAsync("/api/User/AddRole?roleName=Employee",null);
@@ -141,11 +130,11 @@ public class UserControllerTest : IClassFixture<CustomWebApplicationFactory<Prog
                     otp= otpC;
                 }));
         await RegisterUser();
-        var responseMessage = await GenerateToken();
+        var responseMessage = await _authHelpers.GenerateToken();
         Assert.NotNull(responseMessage);
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",responseMessage);
         
-        var response = await _client.PostAsJsonAsync("/api/User/LoginWith2FA", _addUser);
+        var response = await _client.PostAsJsonAsync("/api/User/LoginWith2FA",await _userService.GetUser());
         response.EnsureSuccessStatusCode();
         Assert.Equal(response.StatusCode,HttpStatusCode.OK);
         var configure=await _client.GetAsync($"/api/User/Configure2FA?token={otp}");

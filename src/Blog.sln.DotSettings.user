@@ -34,9 +34,10 @@
     &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.User.UserControllerTest.User_VerifyToken_ShouldReturnOk&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=30bb91a5_002D2e73_002D4c73_002Da571_002Df6a98765cb3d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UpdateUserPost_ShouldReturnOk #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=30bb91a5_002D2e73_002D4c73_002Da571_002Df6a98765cb3d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UpdateUserPost_ShouldReturnOk #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnOk&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnNotFound&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3c807643_002D00cc_002D4ccd_002D9a3f_002D83ad3ae6978b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetUserPostById_ShouldReturnAllUserPost #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -187,6 +188,31 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cab5372c_002D401f_002D4a9c_002D96fa_002Df548de3590af/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnOk #7" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_ShouldReturnOk&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cdbc6eb6_002D64db_002D4116_002Db437_002Db9a33e5acb9c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UpdateUserPost_ShouldReturnNotFound" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test.UpdateUserPost_ShouldReturnBadRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_ShouldReturnOk&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.DeleteUserPost_ShouldReturnNotFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.DeleteUserPostController_Test.DeleteUserPost_ShouldReturnSuccess&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_ShouldReturnCreatedAction&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_ShouldReturnForbidden&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_ShouldReturnUnauthorized&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPosts_ShouldReturnOk&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPosts_ShouldReturnForbidden&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test.GetAllUserPost_WithInvalidPagination_ShouldReturnBadRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithNullInput_ReturnBadRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithoutToken_ReturnBadRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithoutRole_ReturnForbidden&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithInvalidToken_ReturnUnauthorized&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithEmptyBody_ReturnBadRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.PostUserPostController_Test.PostUserPost_WithoutToken_ReturnUnauthorized&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.GetAllUserPostController_Test&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.User.UserControllerTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8BAEEFFD-F9E7-4BA4-B8F9-FD8A5C9B9366::net8.0::Blog.Api.IntegrationTest.Controller.UpdateUserPostController_Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d0c62ec0_002D123d_002D4aa5_002Dbcf1_002D5ec22da03565/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllUserPost_ShouldReturnOk #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
