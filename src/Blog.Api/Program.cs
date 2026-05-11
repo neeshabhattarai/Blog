@@ -3,6 +3,7 @@ using Blog.Application.Extensions;
 using Blog.Infastructure.Extensions;
 using Blog.Middleware;
 using Blog.Services;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -14,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApplicationService();
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 builder.Services.AddInfastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ExceptionHandler>();
@@ -32,29 +33,86 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
         ValidateIssuerSigningKey = true,
     };
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var token = context.HttpContext.Request.Cookies["access_token"];
+            if (!String.IsNullOrEmpty(token))
+            {
+                context.Token = token;
+            }
+            Console.WriteLine(token);
+            return Task.CompletedTask;
+        },
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine(context.Exception.Message);
+            return Task.CompletedTask;
+        }
+    };
+    
 });
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddAntiforgery(options =>
+{
+options.HeaderName = "X-CSRF-TOKEN";
+options.SuppressXFrameOptionsHeader = false;
+});
 builder.Services.Configure<SMTPConfigure>(builder.Configuration.GetSection("SMTP"));
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("BearerScheme",new OpenApiSecurityScheme()
+     options.AddSecurityDefinition("access_token",new OpenApiSecurityScheme()
+     {
+         Type = SecuritySchemeType.ApiKey,
+         In = ParameterLocation.Cookie,
+         Name = "access_token",
+     });
+    options.AddSecurityDefinition("X-CSRF-TOKEN",new OpenApiSecurityScheme
     {
-        BearerFormat = JwtBearerDefaults.AuthenticationScheme,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
+        Type = SecuritySchemeType.ApiKey,
+        In=ParameterLocation.Header,
+        Name = "X-CSRF-TOKEN",
     });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    // options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    // {
+    //     {new OpenApiSecurityScheme
+    //     {
+    //         Reference = new OpenApiReference
+    //         {
+    //             Type = ReferenceType.SecurityScheme,
+    //             Id = "BearerScheme"
+    //         }
+    //     },
+    //     new List<string>()}
+    // });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
-        {new OpenApiSecurityScheme
         {
-            Reference = new OpenApiReference
+            new OpenApiSecurityScheme
             {
-                Type = ReferenceType.SecurityScheme,
-                Id = "BearerScheme"
-            }
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "X-CSRF-TOKEN"
+                }
+            },
+            new List<string>()
         },
-        new List<string>()}
+        
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "access_token"
+                }
+            },
+            new List<string>()
+        },
+
     });
 });
 
@@ -67,9 +125,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+
 app.UseMiddleware<ExceptionHandler>();
 app.UseAuthentication();
 app.UseAuthorization();
+// app.UseAntiforgery();
+app.MapGet("/api/csrf", (IAntiforgery antiforgery, HttpContext context) =>
+{
+   var token= antiforgery.GetAndStoreTokens(context);
+   return Results.Ok(token.RequestToken);
+});
 app.MapControllers();
 app.Run();
 

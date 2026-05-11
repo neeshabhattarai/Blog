@@ -7,6 +7,7 @@ using Blog.Application.Comments.Queries.GetAllComment;
 using Blog.Application.Comments.Queries.GetById;
 using Blog.Infastructure.Service;
 using MediatR;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,10 @@ namespace Blog.Controller;
 [Authorize(Policy = Policy.IsAdminOrUser)]
 // [Authorize(Policy = Policy.IsUser)]
 [Route("api/[action]")]
-public class CommentsController(IMediator mediator):ControllerBase
+// [ValidateAntiForgeryToken]
+public class CommentsController(IMediator mediator,IAntiforgery antiforgery):ControllerBase
 {
+    
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,6 +43,14 @@ public class CommentsController(IMediator mediator):ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> GetAllComment([FromQuery] GetAllCommentCommand request)
     {
+        try
+        {
+await antiforgery.ValidateRequestAsync(HttpContext);
+        }
+        catch (Exception e)
+        {
+return Unauthorized("User not authorized");
+        }
         var result = await mediator.Send(request);
         return Ok(result);
     }

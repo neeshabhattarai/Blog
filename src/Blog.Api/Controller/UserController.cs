@@ -174,7 +174,13 @@ public class UserController(UserManager<User> userManager,RoleManager<IdentityRo
         }
 
         var token =await tokenGenerator.CreateToken(users);
-        return Ok(token);
+        Response.Cookies.Append("access_token",token,new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Lax,
+            Secure = true
+        });
+        return Ok();
     }
     [HttpGet]
     [Authorize]
